@@ -8,18 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		D1F3845626CFA622004057A2 /* AtmoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F3845526CFA622004057A2 /* AtmoApp.swift */; };
-		D1F3845826CFA622004057A2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F3845726CFA622004057A2 /* ContentView.swift */; };
+		D1F3845826CFA622004057A2 /* AtmoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F3845726CFA622004057A2 /* AtmoView.swift */; };
 		D1F3845A26CFA622004057A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1F3845926CFA622004057A2 /* Assets.xcassets */; };
 		D1F3845D26CFA622004057A2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1F3845C26CFA622004057A2 /* Preview Assets.xcassets */; };
+		D1F3846826CFA6C9004057A2 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F3846726CFA6C9004057A2 /* WeatherViewModel.swift */; };
+		D1F3846B26CFAACA004057A2 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F3846A26CFAACA004057A2 /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D1F3845226CFA622004057A2 /* Atmo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Atmo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1F3845526CFA622004057A2 /* AtmoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtmoApp.swift; sourceTree = "<group>"; };
-		D1F3845726CFA622004057A2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D1F3845726CFA622004057A2 /* AtmoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtmoView.swift; sourceTree = "<group>"; };
 		D1F3845926CFA622004057A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D1F3845C26CFA622004057A2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D1F3845E26CFA622004057A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D1F3846726CFA6C9004057A2 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
+		D1F3846A26CFAACA004057A2 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +57,9 @@
 			isa = PBXGroup;
 			children = (
 				D1F3845526CFA622004057A2 /* AtmoApp.swift */,
-				D1F3845726CFA622004057A2 /* ContentView.swift */,
+				D1F3846426CFA636004057A2 /* View */,
+				D1F3846626CFA642004057A2 /* ViewModel */,
+				D1F3846526CFA63E004057A2 /* Model */,
 				D1F3845926CFA622004057A2 /* Assets.xcassets */,
 				D1F3845E26CFA622004057A2 /* Info.plist */,
 				D1F3845B26CFA622004057A2 /* Preview Content */,
@@ -67,6 +73,30 @@
 				D1F3845C26CFA622004057A2 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D1F3846426CFA636004057A2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D1F3845726CFA622004057A2 /* AtmoView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D1F3846526CFA63E004057A2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D1F3846A26CFAACA004057A2 /* Model.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D1F3846626CFA642004057A2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D1F3846726CFA6C9004057A2 /* WeatherViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,8 +168,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D1F3845826CFA622004057A2 /* ContentView.swift in Sources */,
+				D1F3845826CFA622004057A2 /* AtmoView.swift in Sources */,
+				D1F3846826CFA6C9004057A2 /* WeatherViewModel.swift in Sources */,
 				D1F3845626CFA622004057A2 /* AtmoApp.swift in Sources */,
+				D1F3846B26CFAACA004057A2 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
