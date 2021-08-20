@@ -7,36 +7,39 @@
 
 import Foundation
 
-class WeatherViewModel: ObservableObject {
+public class WeatherViewModel: ObservableObject {
     
-    @Published var name: String = ""
+    @Published var city: String = ""
     @Published var temp: String = ""
+    @Published var description: String = ""
     
-    init() {
-        performRequest()
+    public let weatherService: WeatherService
+    
+    public init(weatherService: WeatherService) {
+        self.weatherService = weatherService
     }
     
-    func performRequest() {
-        guard let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=London&appid=d235471cc10b9febda95dead98d2fc1b&units=metric") else {
-            return
-        }
-        
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data, error == nil else {
-                return
-            }
-            do {
-                let model = try JSONDecoder().decode(WeatherModel.self, from: data)
-                
-                DispatchQueue.main.async {
-                    self.name = model.name
-                    self.temp = "\(model.main.temp)°C"
-                }
-            }
-            catch {
-                print("Something went wrong: \(error.localizedDescription)")
+    public func refresh() {
+        weatherService.loadWeatherData { weather in
+            DispatchQueue.main.async {
+                self.city = weather.city
+                self.temp = "\(weather.temp)°C"
+                self.description = weather.description.capitalized
             }
         }
-        task.resume()
     }
+}
+
+struct APIResponse: Decodable {
+    let name: String
+    let main: APIMain
+    let weather: [APIWeather]
+}
+
+struct APIMain: Decodable {
+    let temp: Double
+}
+
+struct APIWeather: Decodable {
+    let description: String
 }

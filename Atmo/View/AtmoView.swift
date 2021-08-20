@@ -8,22 +8,26 @@
 import SwiftUI
 
 struct AtmoView: View {
-    @StateObject var viewModel = WeatherViewModel()
+    
+    @ObservedObject var viewModel: WeatherViewModel
     
     var body: some View {
         NavigationView {
             VStack {
-                Text(viewModel.name)
+                Text(viewModel.city)
                 Text(viewModel.temp)
+                Text(viewModel.description)
             }
             .navigationTitle("Atmo")
+        }
+        .onAppear() {
+            viewModel.refresh()
         }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        AtmoView()
-            
+        AtmoView(viewModel: WeatherViewModel(weatherService: WeatherService())) 
     }
 }
