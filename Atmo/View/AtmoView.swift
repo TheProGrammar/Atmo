@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct AtmoView: View {
-    
     @StateObject var viewModel = WeatherViewModel()
     
     var body: some View {
@@ -25,7 +24,6 @@ struct AtmoView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         AtmoView()
-            .preferredColorScheme(.dark)
             
     }
 }
