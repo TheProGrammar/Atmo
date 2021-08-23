@@ -12,6 +12,21 @@ public class WeatherViewModel: ObservableObject {
     @Published var city: String = ""
     @Published var temp: String = ""
     @Published var description: String = ""
+    var weatherImage: String {
+        switch description {
+        case "Few Clouds": return "day_partial_cloud"
+        case "Clear Sky": return "day_clear"
+        case "Scattered Clouds": return "overcast"
+        case "Broken Clouds": return "cloudy"
+        case "Shower Rain": return "rain"
+        case "Rain": return "rain"
+        case "Thunderstorm": return "rain_thunder"
+        case "Snow": return "snow"
+        case "Mist": return "mist"
+        default:
+            return "day_clear"
+        }
+    }
     
     public let weatherService: WeatherService
     

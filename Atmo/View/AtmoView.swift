@@ -17,6 +17,9 @@ struct AtmoView: View {
                 Text(viewModel.city)
                 Text(viewModel.temp)
                 Text(viewModel.description)
+                Image(viewModel.weatherImage)
+                    .resizable()
+                    .frame(width: 100, height: 100)
             }
             .navigationTitle("Atmo")
         }
