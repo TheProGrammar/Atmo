@@ -11,24 +11,20 @@ struct AtmoView: View {
     
     @ObservedObject var viewModel: WeatherViewModel
     @State var animate = false
-    @State var endSplash = false
+    @State var splashHasEnded = false
     
     var body: some View {
         
         ZStack {
-            
             Home(viewModel: viewModel)
-            
             ZStack {
-                
                 Color("blue")
-                
                 Image("clipart")
                     .resizable()
                     .renderingMode(.original)
                     .aspectRatio(contentMode: animate ? .fill : .fit)
                     .frame(width: animate ? nil : 85, height: animate ? nil : 85)
-                
+                    
                     // Scaling View...
                     .scaleEffect(animate ? 3 : 1)
                     // setting width to avoid over size...
@@ -37,7 +33,7 @@ struct AtmoView: View {
             .ignoresSafeArea(.all, edges: .all)
             .onAppear(perform: animateSplash)
             // hiding view after finishing...
-            .opacity(endSplash ? 0 : 1)
+            .opacity(splashHasEnded ? 0 : 1)
         }
     }
     
@@ -53,7 +49,7 @@ struct AtmoView: View {
             
             withAnimation(Animation.easeOut(duration: 1)) {
                 
-                endSplash.toggle()
+                splashHasEnded.toggle()
                 
             }
         }
@@ -71,21 +67,51 @@ struct Home : View {
     @ObservedObject var viewModel: WeatherViewModel
     
     var body: some View {
-        
-        VStack {
-
-            Text(viewModel.city)
-            Text(viewModel.temp)
-            Text(viewModel.description)
-            Image(viewModel.weatherImage)
-                .resizable()
-                .frame(width: 100, height: 100)
+        ZStack {
+            LinearGradient(gradient: .init(colors: [Color("blueDark"), Color("blueLight")]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                .edgesIgnoringSafeArea(.all)
+            VStack {
+                Text(Date(), style: .date)
+                    .font(.system(size: 23, weight: .light, design: .rounded))
+                    .foregroundColor(.white)
+                    .kerning(0)
+                    .offset(y: -140)
+                    .shadow(color: Color(#colorLiteral(red: 0.2037252307, green: 0.4193340443, blue: 0.5, alpha: 1)), radius: 3, x: 3, y: 3)
+                Text(Date(), style: .time)
+                    .font(.system(size: 35, weight: .regular, design: .rounded))
+                    .foregroundColor(.white)
+                    .kerning(0)
+                    .offset(y: -130)
+                    .shadow(color: Color(#colorLiteral(red: 0.2037252307, green: 0.4193340443, blue: 0.5, alpha: 1)), radius: 4, x: 3, y: 3)
+                Text(viewModel.city)
+                    .font(.system(size: 25, weight: .light, design: .rounded))
+                    .foregroundColor(.white)
+                    .offset(y: -120)
+                    .shadow(color: Color(#colorLiteral(red: 0.2037252307, green: 0.4193340443, blue: 0.5, alpha: 1)), radius: 4, x: 3, y: 3)
+                Image(viewModel.weatherImage)
+                    .resizable()
+                    .frame(width: 200, height: 200)
+                    .offset(y: -40)
+                    .brightness(1)
+                    .shadow(color: Color(#colorLiteral(red: 0.2037252307, green: 0.4193340443, blue: 0.5, alpha: 1)), radius: 2, x: 3, y: 3)
+                Text(viewModel.temp)
+                    .font(.system(size: 70, weight: .light, design: .rounded))
+                    .foregroundColor(.white)
+                    .kerning(0)
+                    .offset(y: -50)
+                    .shadow(color: Color(#colorLiteral(red: 0.2037252307, green: 0.4193340443, blue: 0.5, alpha: 1)), radius: 2, x: 3, y: 3)
+                Text(viewModel.description)
+                    .font(.system(size: 25, weight: .light, design: .rounded))
+                    .foregroundColor(.white)
+                    .kerning(0)
+                    .offset(y: -40)
+                    .shadow(color: Color(#colorLiteral(red: 0.2037252307, green: 0.4193340443, blue: 0.5, alpha: 1)), radius: 4, x: 3, y: 3)
+                
+            }
+            .padding(200)
+            .onAppear() {
+                viewModel.refresh()
+            }
         }
-        .onAppear() {
-            viewModel.refresh()
-        }
-        
     }
 }
-
-
